@@ -632,6 +632,7 @@ def parafac2(
                 verbose=verbose,
                 return_errors=False,
                 tol=1e-100,
+                l2_reg=l2_reg
             )[1]
 
     for iteration in range(n_iter_max):

@@ -199,6 +199,7 @@ def non_negative_parafac_hals(
     verbose=False,
     return_errors=False,
     cvg_criterion="abs_rec_error",
+    l2_reg=0,
 ):
     """
     Non-negative CP decomposition via HALS
@@ -251,6 +252,8 @@ def non_negative_parafac_hals(
         If 'abs_rec_error', ALS terminates when `|previous rec_error - current rec_error| < tol`.
     sparsity : float or int
     random_state : {None, int, np.random.RandomState}
+    l2_reg: float
+        Strength of l2 regularization (ridge) imposed on all modes.
 
     Returns
     -------
@@ -332,6 +335,7 @@ def non_negative_parafac_hals(
                     n_iter_max=100,
                     sparsity_coefficient=sparsity_coefficients[mode],
                     exact=exact,
+                    ridge_coefficient=l2_reg
                 )
                 factors[mode] = tl.transpose(nn_factor)
             else:
