@@ -411,6 +411,7 @@ def parafac2(
     n_iter_parafac: int = 5,
     linesearch: bool = True,
     mask=None,
+    l2_reg=0,
 ):
     r"""PARAFAC2 decomposition [1]_ of a third order tensor via alternating least squares (ALS)
 
@@ -497,6 +498,8 @@ def parafac2(
     mask : ndarray, optional
         An array with the same shape as the tensor. It should be 0 where there are
         missing values and 1 everywhere else.
+    l2_reg : float
+        Strength of l2 regularization (ridge) imposed on all modes.
 
     Returns
     -------
@@ -609,6 +612,7 @@ def parafac2(
                 mask=None,
                 random_state=random_state,
                 tol=1e-100,
+                l2_reg=l2_reg
             )[1]
 
     else:
